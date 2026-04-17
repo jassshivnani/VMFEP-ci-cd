@@ -1,0 +1,23 @@
+name: VMFEP DevOps Lab 8 - Custom CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  automated-build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Fetch Repository Code
+      uses: actions/checkout@v3
+
+    - name: Initialize Python Environment
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Execute VMFEP Main Application
+      run: python vmfep_validation.py
